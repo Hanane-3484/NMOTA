@@ -1,47 +1,48 @@
-<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<?php
+// Charger l'en-tête du thème
+get_header(); 
+?>
 
-<!-- wp:group {"tagName":"main"} -->
-<main class="wp-block-group"><!-- wp:group {"layout":{"inherit":true}} -->
-<div class="wp-block-group"><!-- wp:post-title {"level":1,"align":"wide","style":{"spacing":{"margin":{"bottom":"var(--wp--custom--spacing--medium, 6rem)"}}}} /-->
+<main id="main-content" class="site-main">
+    <?php
+    // Démarrer la boucle pour afficher le contenu de l'article
+    if (have_posts()) :
+        while (have_posts()) : the_post(); ?>
 
-<!-- wp:post-featured-image {"align":"wide","style":{"spacing":{"margin":{"bottom":"var(--wp--custom--spacing--medium, 6rem)"}}}} /-->
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <header class="entry-header">
+                    <h1 class="entry-title"><?php the_title(); ?></h1>
+                    <div class="entry-meta">
+                        <span class="posted-on"><?php the_date(); ?></span> |
+                        <span class="author"><?php the_author(); ?></span>
+                    </div>
+                </header>
 
-<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-<hr class="wp-block-separator alignwide is-style-wide"/>
-<!-- /wp:separator --></div>
-<!-- /wp:group -->
+                <div class="entry-content">
+                    <?php the_content(); ?>
+                </div>
 
-<!-- wp:spacer {"height":32} -->
-<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
+                <footer class="entry-footer">
+                    <div class="categories"><?php the_category(', '); ?></div>
+                    <div class="tags"><?php the_tags('Tags: ', ', '); ?></div>
+                </footer>
+            </article>
 
-<!-- wp:post-content {"layout":{"inherit":true}} /-->
+            <?php
+            // Afficher les commentaires et le formulaire de commentaire, s'ils sont activés
+            if (comments_open() || get_comments_number()) :
+                comments_template();
+            endif;
+            ?>
 
-<!-- wp:spacer {"height":32} -->
-<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
+        <?php endwhile;
+    else : 
+        echo '<p>Aucun contenu trouvé.</p>';
+    endif;
+    ?>
+</main>
 
-<!-- wp:group {"layout":{"inherit":true}} -->
-<div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex"}} -->
-<div class="wp-block-group"><!-- wp:post-date {"format":"F j, Y","style":{"typography":{"fontStyle":"italic","fontWeight":"400"}},"fontSize":"small"} /-->
-
-<!-- wp:post-author {"showAvatar":false,"fontSize":"small"} /-->
-
-<!-- wp:post-terms {"term":"category","fontSize":"small"} /-->
-
-<!-- wp:post-terms {"term":"post_tag","fontSize":"small"} /--></div>
-<!-- /wp:group -->
-
-<!-- wp:spacer {"height":32} -->
-<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:separator {"className":"is-style-wide"} -->
-<hr class="wp-block-separator is-style-wide"/>
-<!-- /wp:separator -->
-
-<!-- wp:post-comments /--></div>
-<!-- /wp:group --></main>
-<!-- /wp:group -->
-
-<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
+<?php
+// Charger le pied de page du thème
+get_footer(); 
+?>

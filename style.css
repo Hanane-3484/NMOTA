@@ -1,0 +1,111 @@
+/*
+Theme Name: NMOTA
+Theme URI: https://github.com/Hanane-3484/NMOTA
+Author: Hanane Dahri
+Author URI: http://nathalie-mota.local
+Description: Mon premier thème WordPress géré via GitHub
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: NMOTA
+*/
+
+@font-face {
+  font-family: "Poppins";
+  src: url("Assets/Fonts/Poppins-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceMonoNormal";
+  src: url("Assets/Fonts/SpaceMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceMonoItalic";
+  src: url("Assets/Fonts/SpaceMono-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpaceMonoBoldItalic";
+  src: url("Assets/Fonts/SpaceMono-BoldItalic.ttf") format("truetype");
+}
+
+h1 {
+  font-family: "SpaceMonoBoldItalic";
+  font-size: 96px;
+}
+
+h2 {
+  font-family: "SpaceMonoItalic";
+  font-size: 66px;
+}
+
+h3 {
+  font-family: "SpaceMonoNormal";
+  font-size: 18px;
+}
+
+p {
+  font-family: "Poppins";
+  font-size: 14px;
+}
+
+#nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Logo {
+  width: 216px;
+  height: 14px;
+  margin:5px;
+}
+
+#menu-header {
+  width: 30%;
+  margin: 5px;
+}
+
+#menu-header-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.site_footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#menu-footer-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.items-footer {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu a,
+.item-footer {
+  color: black;
+  text-decoration: none;
+  font-family: "SpaceMonoNormal";
+  font-style: normal;
+  font-size: 16px;
+  margin: 0;
+}
+
+#menu-item-30, .item-footer {
+  margin-left: 40px;
+}

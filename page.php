@@ -1,26 +1,39 @@
-<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<?php
+// Charger l'en-tête du thème
+get_header(); 
+?>
 
-<!-- wp:group {"tagName":"main"} -->
-<main class="wp-block-group"><!-- wp:group {"layout":{"inherit":true}} -->
-<div class="wp-block-group"><!-- wp:post-title {"level":1,"align":"wide","style":{"spacing":{"margin":{"bottom":"var(--wp--custom--spacing--medium, 6rem)"}}}} /-->
+<main id="main-content" class="site-main">
+    <?php
+    // Démarrer la boucle pour afficher le contenu de la page
+    if (have_posts()) :
+        while (have_posts()) : the_post(); ?>
 
-<!-- wp:post-featured-image {"align":"wide","style":{"spacing":{"margin":{"bottom":"var(--wp--custom--spacing--medium, 6rem)"}}}} /-->
+            <article id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <header class="entry-header">
+                    <h1 class="entry-title"><?php the_title(); ?></h1>
+                </header>
 
-<!-- wp:separator {"align":"wide","className":"is-style-wide"} -->
-<hr class="wp-block-separator alignwide is-style-wide"/>
-<!-- /wp:separator --></div>
-<!-- /wp:group -->
+                <div class="entry-content">
+                    <?php the_content(); ?>
+                </div>
 
-<!-- wp:spacer {"height":32} -->
-<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
+                <?php
+                // Afficher les champs personnalisés, s'il y en a
+                if (current_user_can('edit_posts')) {
+                    edit_post_link('Modifier cette page', '<p>', '</p>');
+                }
+                ?>
+            </article>
 
-<!-- wp:post-content {"layout":{"inherit":true}} /-->
+        <?php endwhile;
+    else : 
+        echo '<p>Aucune page trouvée.</p>';
+    endif;
+    ?>
+</main>
 
-<!-- wp:group {"layout":{"inherit":true}} -->
-<div class="wp-block-group">
-<!-- wp:post-comments {"style":{"spacing":{"padding":{"top":"var(--wp--custom--spacing--medium, 6rem)"}}}} /--></div>
-<!-- /wp:group --></main>
-<!-- /wp:group -->
-
-<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
+<?php
+// Charger le pied de page du thème
+get_footer(); 
+?>
