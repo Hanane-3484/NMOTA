@@ -50,6 +50,8 @@ p {
   font-size: 14px;
 }
 
+/**HEADER & FOOTER**/
+
 #nav {
   width: 100%;
   display: flex;
@@ -59,7 +61,7 @@ p {
 .Logo {
   width: 216px;
   height: 14px;
-  margin:5px;
+  margin: 5px;
 }
 
 #menu-header {
@@ -106,6 +108,76 @@ p {
   margin: 0;
 }
 
-#menu-item-30, .item-footer {
+#menu-item-30,
+.item-footer {
   margin-left: 40px;
+}
+
+.entry-title {
+  display: none;
+}
+
+/** MODALE **/
+.modal {
+  display: none; /* Cacher la modale par défaut */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond sombre */
+}
+
+/* Contenu de la modale */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  text-align: center;
+  overflow: hidden;
+  overflow-y: auto;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+/* Animation Modal */
+@keyframes animatetop {
+  from {
+    left: -400px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+/*Formulaire de Contact*/
+.wpcf7-form-control {
+  border: 1px #b8bbc2 solid;
+  border-radius: 8px;
+  width: 260px;
+  min-height: 40px;
+  max-height: 200px;
+  text-align: center;
+}
+
+.wpcf7-submit {
+  background-color: #d8d8d8;
+  width: 260px;
+  border-radius: 0px;
+}
+
+.wpcf7-spinner {
+  display: none;
+}
+
+.wpcf7-form label {
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 5px;
 }
