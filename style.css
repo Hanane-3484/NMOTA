@@ -50,9 +50,8 @@ p {
   font-size: 14px;
 }
 
-/**HEADER & FOOTER**/
-
-#nav {
+/**Header**/
+#Header {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -69,11 +68,23 @@ p {
   margin: 5px;
 }
 
+.header-menu-class {
+  width: 100%;
+}
+
 #menu-header-menu {
   display: flex;
   justify-content: space-between;
 }
 
+/* Bouton burger (caché par défaut sur desktop) */
+#burger-icon {
+  font-size: 27px;
+  display: none;
+  cursor: pointer;
+}
+
+/*Footer*/
 .site_footer {
   width: 100%;
   display: flex;
@@ -147,11 +158,11 @@ p {
 /* Animation Modal */
 @keyframes animatetop {
   from {
-    left: -400px;
+    transform: translateY(100%);
     opacity: 0;
   }
   to {
-    left: 0;
+    transform: translateY(0%);
     opacity: 1;
   }
 }
@@ -180,4 +191,50 @@ p {
   display: inline-block;
   text-align: left;
   margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  #burger-icon {
+    display: block; /* Affiche le bouton burger sur mobile */
+  }
+
+  .Logo {
+    margin-top: 15px;
+    width: 130px;
+    height: 10px;
+  }
+
+  #menu-header {
+    display: none; /* Cache le menu sur mobile par défaut */
+    position: absolute;
+    right: 0;
+    background-color: white;
+    width: 100%;
+  }
+  #menu-header.active {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #menu-header-menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+
+  .site_footer,
+  #menu-footer-menu {
+    display: inline-block;
+    text-align: center;
+  }
+
+  #menu-item-30,
+  .item-footer {
+    margin-left: 0;
+  }
 }

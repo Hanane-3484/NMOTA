@@ -12,11 +12,13 @@
 
 <body>
 
-<div id="nav">
+<div id="Header">
     <div id="logo">
     <a href="http://nathalie-mota.local/"><img class="Logo" src="<?php echo get_template_directory_uri(); ?>/Assets/Medias/Logo.png" alt="Logo du site"></a>
     </div>
-    <div id="menu-header">
+   <!-- Bouton Burger -->
+   <div id="burger-icon" onclick="toggleMenu()">☰</div>
+    <nav id="menu-header" class="menu-header">
         <?php
         wp_nav_menu(
             array(
@@ -25,8 +27,6 @@
             )
         );
         ?>
-    </div>
+    </nav>
 </div>
-
-
 	<main>
