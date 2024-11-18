@@ -20,7 +20,7 @@ get_template_part('templates_part/modal');
 		)
 	);
 	?>
-	<p class="item-footer">TOUS DROITS RESERVES</p>
+	<span class="item-footer">TOUS DROITS RESERVES</span>
 
 </footer>
 

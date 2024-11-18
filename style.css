@@ -46,8 +46,9 @@ h3 {
 }
 
 p {
-  font-family: "Poppins";
+  font-family: "Poppins" !important;
   font-size: 14px;
+  color: black !important;
 }
 
 /**Header**/
@@ -55,6 +56,7 @@ p {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  box-shadow: 0px 1px 0px 0px #00000008;
 }
 
 .Logo {
@@ -77,11 +79,19 @@ p {
   justify-content: space-between;
 }
 
-/* Bouton burger (caché par défaut sur desktop) */
+.menu a:hover {
+  color: red;
+}
+
+/* Bouton burger et la croix (cachés par défaut sur desktop) */
 #burger-icon {
   font-size: 27px;
   display: none;
   cursor: pointer;
+}
+
+#close-icon {
+  display:none;
 }
 
 /*Footer*/
@@ -89,6 +99,7 @@ p {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 
 #menu-footer-menu {
@@ -193,7 +204,216 @@ p {
   margin-bottom: 5px;
 }
 
+/*SINGLE.PHP*/
+.post-photo {
+  width: 100%;
+  height: 150vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-top: 3vh;
+  overflow: hidden;
+}
+
+.post-thumbnail {
+  width: 49%;
+  height: 100%;
+  order: 2;
+  overflow: hidden;
+}
+
+.post-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-left: 1vw;
+}
+
+.description-post-thumbnail {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  order: 1;
+  box-sizing: border-box;
+  border-bottom: 0.1vh solid black;
+  padding-bottom: 2vh;
+  margin-right: 1vw;
+}
+
+.entry-reference,
+.entry-type,
+.entry-date,
+.entry-format,
+.entry-categorie {
+  font-family: "SpaceMonoNormal" !important;
+  padding-bottom: 1vh;
+  text-transform: uppercase;
+}
+
+.entry-title-photo {
+  width: 60%;
+}
+
+#photo-reference {
+  text-transform: uppercase;
+}
+
+.entry-title-photo {
+  text-transform: uppercase;
+}
+
+.navigation-post-thumbnail {
+  width: 100%;
+  display: flex;
+  height: 118px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1vw;
+  border-bottom: 0.1vh solid black;
+}
+
+/*CONTACT AVEC REF PHOTO PRE REMPLI*/
+.container-contact-button {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-button {
+  background-color: #d8d8d8;
+  border-radius: 0.2vh;
+  width: 40%;
+  height: 8vh;
+  border: none;
+  font-family: "SpaceMonoNormal";
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.contact-button:hover {
+  background-color: black;
+  color: white;
+}
+
+/*NAVIGATION PHOTO*/
+.container-navigation {
+  width: 50%;
+  height: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.prev-photo,
+.next-photo {
+  position: relative;
+  font-size: 2rem;
+  color: black;
+  text-decoration: none;
+  width: 6vw;
+  height: 0vh;
+  bottom: 0px;
+}
+
+.thumbnail-preview {
+  display: none;
+  position: absolute;
+  bottom: -110%;
+  left: 20%;
+  transform: translateX(-50%);
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.prev-photo:hover .thumbnail-preview,
+.next-photo:hover .thumbnail-preview {
+  display: block;
+}
+
+.thumbnail-preview img {
+  width: 100px;
+  height: auto;
+  display: block;
+}
+
+/*SUGGESTION PHOTO*/
+.suggestion-post-thumbnail {
+  width: 100%;
+  height: 90vh;
+  margin-top: 3vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  border-bottom: 0.1vh solid black;
+}
+
+.photos-suggestion {
+  width: 97vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.suggested-photo {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  width: 47vw;
+  height: 80vh;
+}
+
+.suggested-photo img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.suggested-photo:hover img {
+  transform: scale(1.05);
+}
+
+.suggested-photo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s ease;
+  z-index: 1;
+}
+
+.suggested-photo:hover::after {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.eye-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.suggested-photo:hover .eye-link {
+  opacity: 1;
+}
+
+.eye {
+  width: 5vw;
+  height: auto;
+}
+
 @media (max-width: 768px) {
+  h2 {
+    font-size: 46px;
+  }
+
   #burger-icon {
     display: block; /* Affiche le bouton burger sur mobile */
   }
@@ -205,36 +425,135 @@ p {
   }
 
   #menu-header {
-    display: none; /* Cache le menu sur mobile par défaut */
+    display: none;
     position: absolute;
     right: 0;
     background-color: white;
     width: 100%;
-  }
-  #menu-header.active {
-    width: 100%;
+    top: 0;
+    left: 0;
     height: 100%;
+  }
+
+  #menu-header.active {
     display: flex;
     flex-direction: column;
     text-align: center;
+    height: 100%;
   }
 
   #menu-header-menu {
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 10%;
+  }
+
+  #close-icon {
+    font-size: 20px;
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  #menu-header.active #close-icon {
+    display: block;
+  }
+
+  #menu-header.active #burger-icon {
+    display: none;
   }
 
   .site_footer,
   #menu-footer-menu {
     display: inline-block;
+    padding-bottom: 10px;
+    padding-top: 20px;
     text-align: center;
   }
 
   #menu-item-30,
   .item-footer {
     margin-left: 0;
+    padding-top: 10px;
+  }
+
+  .post-photo {
+    width: 100%;
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-thumbnail {
+    order: 1;
+    width: 350px;
+    height: 500px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .post-thumbnail img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .description-post-thumbnail {
+    width: 96%;
+    height: 50%;
+    display: flex;
+    justify-content: start;
+    order: 2;
+    margin-right: 2%;
+    margin-left: 2%;
+  }
+
+  .entry-title-photo {
+    width: 80%;
+    margin-top:10px;
+  }
+
+  .navigation-post-thumbnail {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .container-contact-button {
+    width: 96%;
+    flex-direction: column;
+    margin-left:2%;
+    margin-right: 2%;
+  }
+
+  .contact-button {
+    width: 95%;
+    margin: auto;
+    margin-left: 0px;
+  }
+
+  .next-photo,
+  .prev-photo {
+    display: none;
+  }
+  .suggestion-post-thumbnail {
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .photos-suggestion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+  }
+
+  .suggested-photo {
+    width: 300px;
+    height: 280px;
+    margin: auto;
   }
 }
