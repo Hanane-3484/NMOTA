@@ -87,21 +87,49 @@
                         <button class="contact-button" data-photo-ref="<?php echo esc_attr($reference); ?>">Contact</button>
                     </div>
 
+
                     <div class="container-navigation">
+    <?php
+    // Récupérer le post courant
+    $current_post_id = get_the_ID();
+
+    // Arguments pour trouver le post précédent
+    $prev_post = get_posts([
+        'posts_per_page' => 1,
+        'post_type' => 'photo', 
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'date_query' => [
+            'before' => get_the_date('Y-m-d H:i:s', $current_post_id),
+        ],
+    ]);
+
+    // Arguments pour trouver le post suivant
+    $next_post = get_posts([
+        'posts_per_page' => 1,
+        'post_type' => 'photo', // Remplacez "photo" par votre post type si nécessaire
+        'orderby' => 'date',
+        'order' => 'ASC',
+        'date_query' => [
+            'after' => get_the_date('Y-m-d H:i:s', $current_post_id),
+        ],
+    ]);
+    ?>
+
     <?php if (!empty($prev_post)) : ?>
-        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="prev-photo">
+        <a href="<?php echo get_permalink($prev_post[0]->ID); ?>" class="prev-photo">
             &#8592;
             <div class="thumbnail-preview">
-                <?php echo get_the_post_thumbnail($prev_post->ID, 'thumbnail'); ?>
+                <?php echo get_the_post_thumbnail($prev_post[0]->ID, 'thumbnail'); ?>
             </div>
         </a>
     <?php endif; ?>
 
     <?php if (!empty($next_post)) : ?>
-        <a href="<?php echo get_permalink($next_post->ID); ?>" class="next-photo">
+        <a href="<?php echo get_permalink($next_post[0]->ID); ?>" class="next-photo">
             &#8594;
             <div class="thumbnail-preview">
-                <?php echo get_the_post_thumbnail($next_post->ID, 'thumbnail'); ?>
+                <?php echo get_the_post_thumbnail($next_post[0]->ID, 'thumbnail'); ?>
             </div>
         </a>
     <?php endif; ?>
@@ -110,48 +138,46 @@
 
                 <!-- Suggestions de photos de la même catégorie -->
                 <div class="suggestion-post-thumbnail">
-                    <h3>VOUS AIMERIEZ AUSSI</h3>
-                    <div class="photos-suggestion">
-                        <?php
-                        // Récupère l'ID de la première catégorie
-                        if ($categories && !is_wp_error($categories)) {
-                            $first_category = $categories[0]->term_id;
-                            
-                            $suggestion_args = array(
-                                'post_type' => 'photo',
-                                'posts_per_page' => 2,
-                                'post__not_in' => array(get_the_ID()),
-                                'tax_query' => array(
-                                    array(
-                                        'taxonomy' => 'categorie',
-                                        'field' => 'term_id',
-                                        'terms' => $first_category,
-                                    ),
-                                ),
-                            );
+    <h3>VOUS AIMERIEZ AUSSI</h3>
+    <div class="suggested-photo">
+    <?php
+    if ($categories && !is_wp_error($categories)) {
+        $first_category = $categories[0]->term_id;
 
-                            $suggestion_query = new WP_Query($suggestion_args);
+        $suggestion_args = array(
+            'post_type' => 'photo',
+            'posts_per_page' => 2,
+            'post__not_in' => array(get_the_ID()),
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'categorie', // Slug de la taxonomie CPT UI
+                    'field' => 'term_id',
+                    'terms' => $first_category,
+                ),
+            ),
+        );
 
-                            if ($suggestion_query->have_posts()) :
-                                while ($suggestion_query->have_posts()) : $suggestion_query->the_post(); ?>
-                               <div class="suggested-photo">
-                                <?php 
-                               if (has_post_thumbnail()) {
-                               the_post_thumbnail('medium');
-                               } ?>
-                                <a href="<?php the_permalink(); ?>" class="eye-link">
-                                  <img class="eye" src="/wp-content/themes/NMOTA/Assets/Medias/eye.png" alt="Voir">
-                                </a>
-                                </div>
-                                <?php endwhile;
-                                wp_reset_postdata();
-                            else : 
-                                echo '<p>Aucune suggestion trouvée.</p>';
-                            endif;
-                        }
-                        ?>
-                    </div>
-                </div>
+        $suggestion_query = new WP_Query($suggestion_args);
+
+        if ($suggestion_query->have_posts()) :
+            while ($suggestion_query->have_posts()) : $suggestion_query->the_post(); 
+                $photo_reference = get_post_meta(get_the_ID(), 'reference_scf', true); // SCF pour la référence
+                $photo_categories = get_the_terms(get_the_ID(), 'categorie'); // CPT UI pour les catégories
+                ?>
+
+                    <!-- Lien autour de l'image pour la rendre cliquable -->
+
+                    <?php get_template_part('/templates_part/photo-block'); ?>
+               
+            <?php endwhile;
+            wp_reset_postdata();
+        else : 
+            echo '<p>Aucune suggestion trouvée.</p>';
+        endif;
+    }
+        ?>
+        </div>
+</div>
             </article>
 
         <?php endwhile;
