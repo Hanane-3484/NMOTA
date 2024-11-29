@@ -1,3 +1,4 @@
+/*AJAX-GRID*/
 jQuery(document).ready(function ($) {
     var offset = 0;
     var postsPerPage = 8;
@@ -58,6 +59,9 @@ jQuery(document).ready(function ($) {
                     $('.photo-grid').append(response); // Ajoute les nouvelles photos
                     offset += postsPerPage;
                     $('#load-more').text('Charger plus');
+    
+                    // Appeler updateImages après avoir ajouté les photos
+                    updateImages(); // Assurez-vous que cette fonction est définie
                 } else {
                     $('#load-more').hide();
                 }
@@ -65,6 +69,28 @@ jQuery(document).ready(function ($) {
             error: function () {
                 alert('Erreur lors du chargement des photos.');
             },
+        });
+    }
+
+    // Définition de la fonction updateImages
+    function updateImages() {
+        var images = [];
+        var currentIndex = 0;
+
+        // Collecter toutes les images dans la grille
+        $('.photo-item .fullscreen').each(function () {
+            var imageData = {
+                url: $(this).data('image'),
+                title: $(this).data('title'),
+                categories: $(this).data('categories')
+            };
+        
+            // Assurez-vous que toutes les données sont présentes avant d'ajouter
+            if (imageData.url && imageData.title && imageData.categories) {
+                images.push(imageData);
+            } else {
+                console.warn("Données manquantes pour une image:", imageData);
+            }
         });
     }
 });

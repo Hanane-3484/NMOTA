@@ -2,9 +2,9 @@
 
 function add_scripts() {
     // Enregistre le fichier JavaScript
-    wp_enqueue_script( 'mon-script', get_stylesheet_directory_uri() . '/js/script.js', array(), '1.0.0', true );
     wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
-}
+    wp_enqueue_script( 'filters', get_stylesheet_directory_uri() . '/js/filters.js', array(), '1.0.0', true);
+    wp_enqueue_script( 'menuburger', get_stylesheet_directory_uri() . '/js/menu-burger.js', array(), '1.0.0', true);}
 add_action('wp_enqueue_scripts', 'add_scripts');
 
 function add_styles() {
@@ -23,7 +23,6 @@ function register_my_menu() {
     );
     }
 
-
 add_action( 'init', 'register_my_menu' );
 
     // Crée l'id Contact au menu Wordpress 
@@ -40,12 +39,19 @@ add_filter('wp_nav_menu_objects', 'ajouter_id_au_menu');
 
     // Enregistre la requête AJAX pour la Grid Photo
     function enqueue_my_ajax_script() {
-        wp_enqueue_script('ajax-grid', get_template_directory_uri() . '/js/ajax-grid.js', array('jquery'), null, true);
+        // Charger jQuery
+        wp_enqueue_script('jquery');
     
-        // Localisation des paramètres nécessaires pour AJAX
+        // Charger jQuery Migrate si nécessaire
+        wp_enqueue_script('jquery-migrate');
+    
+        // Charger 'lightbox.js' et 'ajax-grid.js'
+        wp_enqueue_script('lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_script('ajax-grid', get_template_directory_uri() . '/js/ajax-grid.js', array('jquery', 'lightbox'), '1.0.0', true);
+    
         wp_localize_script('ajax-grid', 'ajaxData', array(
             'url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('load_photo_grid_nonce') // Nonce pour sécuriser les requêtes
+            'nonce' => wp_create_nonce('load_photo_grid_nonce')
         ));
     }
     add_action('wp_enqueue_scripts', 'enqueue_my_ajax_script');
@@ -109,3 +115,5 @@ function load_photo_grid() {
 // Actions AJAX pour les utilisateurs connectés et non connectés
 add_action('wp_ajax_load_photo_grid', 'load_photo_grid');
 add_action('wp_ajax_nopriv_load_photo_grid', 'load_photo_grid');
+
+?>

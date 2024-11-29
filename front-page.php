@@ -37,7 +37,7 @@ endif;
             </div>
             <ul class="dropdown-options">
                 <!-- Option pour toutes les catégories -->
-                <li data-value="" class="all-categories">Toutes les catégories</li>
+                <li data-value="">&nbsp;</li>
                 <?php
                 $categories = get_terms(array(
                     'taxonomy' => 'categorie',

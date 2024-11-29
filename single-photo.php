@@ -84,7 +84,7 @@
                 <div class="navigation-post-thumbnail">
                     <div class="container-contact-button">
                         <p>Cette photo vous intéresse ?</p>
-                        <button class="contact-button" data-photo-ref="<?php echo esc_attr($reference); ?>">Contact</button>
+                        <button class="contact-button single-photo" data-photo-ref="<?php echo esc_attr($reference); ?>">Contact</button>
                     </div>
 
 
@@ -165,7 +165,6 @@
                 $photo_categories = get_the_terms(get_the_ID(), 'categorie'); // CPT UI pour les catégories
                 ?>
 
-                    <!-- Lien autour de l'image pour la rendre cliquable -->
 
                     <?php get_template_part('/templates_part/photo-block'); ?>
                

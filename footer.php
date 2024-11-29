@@ -2,9 +2,11 @@
 </main>
 
 <?php
-// la modale de contact
+// la modale de contact et la lightbox
 get_template_part('templates_part/modal');
 ?>
+
+<?php get_template_part('/templates_part/light-box'); ?>
 
 <!--le fichier JavaScript -->
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
