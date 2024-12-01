@@ -87,7 +87,6 @@
                         <button class="contact-button single-photo" data-photo-ref="<?php echo esc_attr($reference); ?>">Contact</button>
                     </div>
 
-
                     <div class="container-navigation">
     <?php
     // Récupérer le post courant
@@ -107,7 +106,7 @@
     // Arguments pour trouver le post suivant
     $next_post = get_posts([
         'posts_per_page' => 1,
-        'post_type' => 'photo', // Remplacez "photo" par votre post type si nécessaire
+        'post_type' => 'photo', 
         'orderby' => 'date',
         'order' => 'ASC',
         'date_query' => [
@@ -134,7 +133,7 @@
         </a>
     <?php endif; ?>
 </div>
-                </div>
+    </div>
 
                 <!-- Suggestions de photos de la même catégorie -->
                 <div class="suggestion-post-thumbnail">

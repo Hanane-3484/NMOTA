@@ -201,7 +201,7 @@ p {
 
 .order {
   pointer-events: none;
-  cursor: default; 
+  cursor: default;
   color: var(--color-2);
 }
 
@@ -230,7 +230,7 @@ p {
 
 /* On survole le dropdown (titre de filtre) */
 .custom-dropdown .dropdown-trigger:hover {
-  border: 1px #215AFF solid; 
+  border: 1px #215aff solid;
   border-radius: 8px;
 }
 
@@ -243,12 +243,12 @@ p {
   border-left: 2px solid var(--color-2);
   border-bottom: 2px solid var(--color-2);
   transform: rotate(-45deg); /* Flèche vers le bas */
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
 }
 
 /* Flèche tournée quand le dropdown est ouvert */
 .dropdown-trigger.active .dropdown-arrow {
-  transform: rotate(-225deg); 
+  transform: rotate(-225deg);
 }
 
 /* Menu déroulant (options) */
@@ -355,6 +355,12 @@ p {
   background-color: var(--color-3);
   width: 260px;
   border-radius: 0px;
+  cursor: pointer;
+}
+
+.wpcf7-submit:hover {
+  background-color: var(--color-2);
+  color: white;
 }
 
 .wpcf7-spinner {
@@ -470,6 +476,7 @@ p {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  position: relative; /* Ajoutez cette ligne pour que les éléments positionnés à l'intérieur de .container-navigation soient relatifs */
 }
 
 .prev-photo,
@@ -484,13 +491,15 @@ p {
 }
 
 .thumbnail-preview {
-  display: none;
+  display: none; /* Masquer les aperçus par défaut */
   position: absolute;
-  bottom: -110%;
-  left: 20%;
-  transform: translateX(-50%);
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  bottom: 100%; /* Positionner la vignette juste au-dessus de la flèche */
+  left: 50%;
+  transform: translateX(-70%); /* Centrer la vignette horizontalement */
+  border: 0.5px solid #ddd;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  background: white;
+  padding: 5px;
 }
 
 .prev-photo:hover .thumbnail-preview,
@@ -501,8 +510,9 @@ p {
 .thumbnail-preview img {
   width: 100px;
   height: auto;
-  display: block;
+  display: block; /* S'assurer que l'image est en mode bloc */
 }
+
 
 /**SUGGESTIONS PHOTO**/
 .suggestion-post-thumbnail {
@@ -516,7 +526,7 @@ p {
 
 .suggested-photo {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -541,7 +551,7 @@ p {
 
 .photo-item:hover img {
   transform: scale(1.05);
-  filter: brightness(0.6); 
+  filter: brightness(0.6);
 }
 
 .photo-item .icons {
@@ -616,7 +626,7 @@ p {
 
 /*LIGHTBOX*/
 .lightbox {
-  display: none; 
+  display: none;
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -656,10 +666,8 @@ p {
   height: 70vh;
   object-fit: cover;
   margin-bottom: 15px;
-  border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
-
 
 #lightbox-info {
   text-align: center;
@@ -667,7 +675,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px; 
+  gap: 20px;
 }
 
 #lightbox-title {
@@ -678,7 +686,7 @@ p {
 
 #lightbox-category {
   color: white !important;
-  font-family: "SpaceMonoNormal"!important;
+  font-family: "SpaceMonoNormal" !important;
   font-size: 14px;
   text-transform: uppercase;
 }
@@ -694,7 +702,7 @@ p {
 }
 
 .close-lightbox:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
   font-weight: bold;
 }
 
@@ -961,7 +969,7 @@ p {
 
   .photo-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr); 
+    grid-template-columns: repeat(1, 1fr);
     gap: 10px;
   }
 
@@ -975,7 +983,7 @@ p {
   .photo-item img {
     width: 90vw;
     height: 40vh;
-    object-fit: cover; 
+    object-fit: cover;
   }
 
   /*FILTRES MOBILE*/
