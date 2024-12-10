@@ -89,7 +89,7 @@
 
                     <div class="container-navigation">
     <?php
-    // Récupérer le post courant
+    // Récupère le post courant
     $current_post_id = get_the_ID();
 
     // Arguments pour trouver le post précédent

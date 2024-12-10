@@ -513,7 +513,6 @@ p {
   display: block; /* S'assurer que l'image est en mode bloc */
 }
 
-
 /**SUGGESTIONS PHOTO**/
 .suggestion-post-thumbnail {
   width: 100vw;
@@ -570,6 +569,7 @@ p {
 
 .photo-item:hover .icons {
   opacity: 1;
+  filter: brightness(1.5);
 }
 
 .photo-item .eye {
