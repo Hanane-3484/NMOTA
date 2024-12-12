@@ -67,7 +67,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    // Mettre à jour les images après un chargement AJAX
+    // Met à jour les images après un chargement AJAX
     jQuery(document).ajaxComplete(function () {
         updateImages(); // Met à jour le tableau des images lorsqu'un nouveau contenu est chargé via AJAX
     });
